@@ -245,4 +245,7 @@ report/*
 outputs/
 outputs/*
 
+# tmp files
+*.tmp
+
 # End of https://www.toptal.com/developers/gitignore/api/python,jupyternotebooks,visualstudiocode,linux,windows,macos
