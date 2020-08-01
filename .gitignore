@@ -235,4 +235,14 @@ $RECYCLE.BIN/
 data/
 data/*
 
+# etc directory
+experiments/
+experiments/*
+notebooks/
+notebooks/*
+report/
+report/*
+outputs/
+outputs/*
+
 # End of https://www.toptal.com/developers/gitignore/api/python,jupyternotebooks,visualstudiocode,linux,windows,macos
