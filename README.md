@@ -71,7 +71,7 @@ B_results_DS2.csv
 - Latent Factor 모델은 아래의 그림과 같이 User와 Item을 $K$-차원을 가지는 latent vector로 표현하는 모델임
 - 그 중 MF는 User와 Item을 $K$-차원을 가지는 동일한 latent space에 매핑함  
 
-<img src="./images/mf3.png" style="zoom:48%;" />
+<img src="D:/dev/MF-Recommender-system/images/mf3.png" style="zoom:48%;" />
 
 
 
@@ -81,7 +81,7 @@ B_results_DS2.csv
 - 하지만, SVD는 데이터의 수가 커질수록 연산 속도가 매우 느려지는 문제가 발생함
 - 또한, 대부분의 Rating Matrix($\mathbf{R}$)가 매우 sparse하기 때문에 성능이 좋지 않음
 
-<img src="./images/svd4.png" style="zoom:48%;" />
+<img src="D:/dev/MF-Recommender-system/images/svd4.png" style="zoom:48%;" />
 
 
 
@@ -91,7 +91,7 @@ B_results_DS2.csv
 
 - Rating Matrix $\mathbf{R}$ 의 분해값에 해당하는 User Matrix $\mathbf{U}$와 Item Matrix $\mathbf{V}$ 를 가우스 분포 $\mathcal{N}(0, \sigma^{2})$를 사용하여 추정하는 모델임
 
-<img src="./images/pmf4.png" style="zoom:48%;" />
+<img src="D:/dev/MF-Recommender-system/images/pmf4.png" style="zoom:48%;" />
 
 - $\mathbf{U}$, $\mathbf{V}$를 학습하기 위해, SGD(Stochastic Gradient Descent) + Momentum($\beta\$)을 사용함
 - $\mathbf{U}$ 을 SGD + Momentum을 사용하여 학습하는 방법은 아래의 수식과 같음
@@ -132,7 +132,7 @@ $$
 
 
 
-<img src="./images/addpmf.png" style="zoom:48%;" />
+<img src="D:/dev/MF-Recommender-system/images/addpmf.png" style="zoom:48%;" />
 
 
 
@@ -165,7 +165,7 @@ $$
 |    **reg**     | [0.01, 0.02, **<u>0.04</u>**, 0.05, 0.1]  |                  regularization 파라미터                   |
 |  **momentum**  |           [0.8, **<u>0.9</u>**]           |                        모멘텀 계수                         |
 |     **lr**     | [0.0001, <u>**0.0005**</u>, 0.001, 0.005] |                       learning rate                        |
-|   **alpha**    |        [0.4, **<u>0.5</u>**, 0.6]         | AddPMF에서 사용하는 <br />User/Item specific rating 가중치 |
+|   **alpha**    |   [0.4(DS1), **<u>0.5</u>(DS2)**, 0.6]    | AddPMF에서 사용하는 <br />User/Item specific rating 가중치 |
 
 
 
@@ -186,5 +186,5 @@ $$
 
 
 
-<img src="./images/rmse_ds12.png" style="zoom:58%;" />
+<img src="D:/dev/MF-Recommender-system/images/rmse_ds12.png" style="zoom:58%;" />
 

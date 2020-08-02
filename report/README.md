@@ -102,7 +102,7 @@ $$
 |    **reg**     | [0.01, 0.02, **<u>0.04</u>**, 0.05, 0.1]  |                  regularization 파라미터                   |
 |  **momentum**  |           [0.8, **<u>0.9</u>**]           |                        모멘텀 계수                         |
 |     **lr**     | [0.0001, <u>**0.0005**</u>, 0.001, 0.005] |                       learning rate                        |
-|   **alpha**    |        [0.4, **<u>0.5</u>**, 0.6]         | AddPMF에서 사용하는 <br />User/Item specific rating 가중치 |
+|   **alpha**    |   [0.4(DS1), **<u>0.5</u>(DS2)**, 0.6]    | AddPMF에서 사용하는 <br />User/Item specific rating 가중치 |
 
 
 
