@@ -9,15 +9,16 @@ from .types_ import *
 
 
 def get_data(
-    download: bool = False, data_path: str = "data/ml-20m/ratings.csv",
+    data_path: str = "data/ml-20m/ratings.csv", download: bool = False,
 ) -> List[List[Union[int, int, float, int]]]:
     """
     Arguments
     ---------
-    download : bool
-        download dataset or not
     data_path : str
         ratings.csv dataset path
+    download : bool
+        download dataset or not
+    
     Returns
     -------
     dataset : list of list[int, int, float, int]
