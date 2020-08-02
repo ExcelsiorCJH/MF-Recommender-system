@@ -78,7 +78,7 @@ def train_test_split(data: np.ndarray, data_type: str = "DS2") -> Union[np.ndarr
             user_id, item_id, rating, ts = row
             if ts < 1388502017:
                 trainset.append([user_id, item_id, rating, ts])
-            elif ts > 1388502017:
+            elif ts >= 1388502017:
                 testset.append([user_id, item_id, rating, ts])
 
     return np.array(trainset), np.array(testset)
