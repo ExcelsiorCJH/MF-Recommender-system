@@ -18,7 +18,7 @@ class PMF(object):
         reg: float = 1e-2,
         max_rating: float = 5.0,
         min_rating: float = 1.0,
-        save_dir: str = "../outputs",
+        save_dir: str = "outputs/DS2",
     ):
         """
         Probabilistic Matrix Factorization(PMF) Class
@@ -65,7 +65,7 @@ class PMF(object):
         self.user_features = 0.1 * np.random.rand(n_user, n_feature)
         self.item_features = 0.1 * np.random.rand(n_item, n_feature)
 
-    def fit(self, ratings: np.ndarray, validset: np.ndarray = None, epochs: int = 30) -> None:
+    def fit(self, ratings: np.ndarray, validset: np.ndarray = None, epochs: int = 20) -> None:
         """
         Arguments
         ---------
@@ -169,15 +169,6 @@ class PMF(object):
                     result_dir = f"{self.save_dir}/results"
                     weight_dir = f"{self.save_dir}/weights"
 
-                    # check dir
-                    if not os.path.exists(self.save_dir):
-                        os.mkdir(self.save_dir)
-                    elif not os.path.exists(result_dir):
-                        os.mkdir(result_dir)
-                    elif not os.path.exists(weight_dir):
-                        os.mkdir(weight_dir)
-
-                    # fname = f"../experiments/results2/output_{self.n_feature}_{self.reg}_{self.learning_rate}_{epoch}_{valid_loss:.6f}.csv"
                     to_csv(f"{result_dir}/output_val_pmf.csv", valid_preds, validset, header=True)
                     self._save_model(weight_dir)
                     print(f"save result and model weights at {best_loss}")
@@ -212,7 +203,7 @@ class PMF(object):
 
         return preds
 
-    def load_weights(self, file_name: str = "../outputs/weights/best_model_pmf.npz"):
+    def load_weights(self, file_name: str = "outputs/DS2/weights/best_model_pmf.npz"):
         w_dict = np.load(file_name)
         self.user_features = w_dict["user_features"]
         self.item_features = w_dict["item_features"]
