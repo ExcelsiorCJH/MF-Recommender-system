@@ -23,9 +23,10 @@ def get_data(
     dataset : list of list[int, int, float, int]
         [[user_id, movie_id, rating, ts], ...]
     """
-    if download or not os.path.exsts("data"):
+    if download or not os.path.exists("data"):
         data_url = "http://files.grouplens.org/datasets/movielens/ml-20m.zip"
         dir_path = "data"
+
         os.mkdir(dir_path)
         r = requests.get(data_url)
         z = zipfile.ZipFile(io.BytesIO(r.content))
