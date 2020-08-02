@@ -1,4 +1,6 @@
-import os
+import os, io
+import requests
+import zipfile
 
 import numpy as np
 
@@ -6,7 +8,9 @@ from collections import defaultdict
 from .types_ import *
 
 
-def get_data(data_path: str = "data/ratings.csv",) -> List[List[Union[int, int, float, int]]]:
+def get_data(
+    data_path: str = "data/ml-20m/ratings.csv",
+) -> List[List[Union[int, int, float, int]]]:
     """
     Arguments
     ---------
@@ -17,6 +21,14 @@ def get_data(data_path: str = "data/ratings.csv",) -> List[List[Union[int, int, 
     dataset : list of list[int, int, float, int]
         [[user_id, movie_id, rating, ts], ...]
     """
+    if download or not os.path.exsts("data"):
+        data_url = "http://files.grouplens.org/datasets/movielens/ml-20m.zip"
+        dir_path = "data"
+        os.mkdir(dir_path)
+        r = requests.get(data_url)
+        z = zipfile.ZipFile(io.BytesIO(r.content))
+        z.extractall(dir_path)
+
     dataset = []
     for idx, line in enumerate(open(f"{data_path}", "r")):
         if idx == 0:
@@ -64,7 +76,7 @@ def train_test_split(data: np.ndarray, data_type: str = "DS2") -> Union[np.ndarr
             user_id, item_id, rating, ts = row
             if ts < 1388502017:
                 trainset.append([user_id, item_id, rating, ts])
-            elif ts >= 1388502017:
+            elif ts > 1388502017:
                 testset.append([user_id, item_id, rating, ts])
 
     return np.array(trainset), np.array(testset)

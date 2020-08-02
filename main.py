@@ -21,7 +21,7 @@ parser.add_argument("--alpha", type=float, default=0.4, help="Weight for user/it
 # data
 parser.add_argument("--data_type", type=str, default="DS2", help="Dataset name to analyze")
 parser.add_argument(
-    "--data_path", type=str, default="data/ratings.csv", help="Folder for existing data"
+    "--data_path", type=str, default="data/ml-20m/ratings.csv", help="Folder for existing data"
 )
 # test
 parser.add_argument(
