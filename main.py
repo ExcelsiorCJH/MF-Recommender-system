@@ -17,7 +17,7 @@ parser.add_argument("--features", type=int, default=100, help="Number of latent 
 parser.add_argument("--reg", type=float, default=0.04, help="Regularization parameter")
 parser.add_argument("--momentum", type=float, default=0.9, help="Momentum for SGD")
 parser.add_argument("--lr", type=float, default=0.0005, help="Learning rate parameter")
-parser.add_argument("--alpha", type=float, default=0.4, help="Weight for user/item rating")
+parser.add_argument("--alpha", type=float, default=0.5, help="Weight for user/item rating")
 # data
 parser.add_argument("--data_type", type=str, default="DS2", help="Dataset name to analyze")
 parser.add_argument(
@@ -131,6 +131,7 @@ def test():
             batch_size=args.batch_size,
             n_feature=args.features,
             reg=args.reg,
+            alpha=args.alpha,
             momentum=args.momentum,
             learning_rate=args.lr,
             save_dir=f"outputs/{args.data_type}",

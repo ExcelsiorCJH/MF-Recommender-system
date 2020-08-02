@@ -19,14 +19,15 @@ class AddPMF(object):
         learning_rate: float = 0.0005,
         momentum: float = 0.9,
         reg: float = 1e-2,
-        alpha: float = 0.4,
+        alpha: float = 0.5,
         max_rating: float = 5.0,
         min_rating: float = 1.0,
         save_dir: str = "outputs/DS2",
     ):
         """
-        Probabilistic Matrix Factorization(PMF) + Bias Class
-        =============================================
+        Probabilistic Matrix Factorization(PMF) + Bias 
+        + User/Item specific ratings Class
+        ==============================================
 
         Arguments
         ---------
@@ -148,10 +149,7 @@ class AddPMF(object):
 
                 user_ratings, item_ratings = np.array(user_ratings), np.array(item_ratings)
                 weight_ratings = self.alpha * user_ratings + (1 - self.alpha) * item_ratings
-                # outputs = np.sum(
-                #     (u_features + u_bias[:, np.newaxis]) * (i_features + i_bias[:, np.newaxis]),
-                #     axis=1,
-                # )
+
                 outputs = np.sum(u_features * i_features, axis=1) + u_bias + i_bias
                 errs = outputs - (batch.take(2, axis=1) - weight_ratings)
                 err_mat = np.tile(2 * errs, (self.n_feature, 1)).T
@@ -253,12 +251,6 @@ class AddPMF(object):
         user_ratings, item_ratings = np.array(user_ratings), np.array(item_ratings)
         weight_ratings = self.alpha * user_ratings + (1 - self.alpha) * item_ratings
         preds = np.sum(u_features * i_features, axis=1) + u_bias + i_bias + weight_ratings
-        # preds = (
-        #     np.sum(
-        #         (u_features + u_bias[:, np.newaxis]) * (i_features + i_bias[:, np.newaxis]), axis=1
-        #     )
-        #     + self.mean_rating
-        # )
 
         # clip rating
         if self.max_rating:

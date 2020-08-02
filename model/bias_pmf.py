@@ -126,10 +126,6 @@ class BiasPMF(object):
                 u_bias = self.user_bias.take(user_ids)
                 i_bias = self.item_bias.take(item_ids)
 
-                # outputs = np.sum(
-                #     (u_features + u_bias[:, np.newaxis]) * (i_features + i_bias[:, np.newaxis]),
-                #     axis=1,
-                # )
                 outputs = np.sum(u_features * i_features, axis=1) + u_bias + i_bias
                 errs = outputs - (batch.take(2, axis=1) - self.mean_rating)
                 err_mat = np.tile(2 * errs, (self.n_feature, 1)).T
@@ -222,12 +218,6 @@ class BiasPMF(object):
         i_bias = self.item_bias.take(item_ids)
 
         preds = np.sum(u_features * i_features, axis=1) + u_bias + i_bias + self.mean_rating
-        # preds = (
-        #     np.sum(
-        #         (u_features + u_bias[:, np.newaxis]) * (i_features + i_bias[:, np.newaxis]), axis=1
-        #     )
-        #     + self.mean_rating
-        # )
 
         # clip rating
         if self.max_rating:
